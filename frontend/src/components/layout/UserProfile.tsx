@@ -27,7 +27,7 @@ const UserProfile = () => {
           text-white
         "
       >
-        J
+        VR
       </div>
 
       <div className="text-left">
