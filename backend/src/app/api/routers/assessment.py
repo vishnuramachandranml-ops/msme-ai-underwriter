@@ -1,5 +1,6 @@
 from __future__ import annotations
-
+from app.core.settings import settings
+from app.graphs.assessment.graph import assessment_graph
 from app.models.assessment_request import AssessmentRequest
 from app.models.assessment_response import (
     AssessmentResponse,
@@ -109,7 +110,13 @@ async def assess(
     Perform financial health assessment for an MSME.
     """
 
-    result = pipeline.assess(request)
+    if settings.use_langgraph:
+        result = assessment_graph.invoke(
+            {"request": request}
+        )["result"]
+    else:
+        result = pipeline.assess(request)
+        
     return build_assessment_response(
         request=request,
         result=result,

@@ -35,6 +35,8 @@ class Settings(BaseSettings):
     api_key: str = Field(default="change-me")
     api_key_header: str = Field(default="X-API-Key")
     gemini_api_key: str = Field(default="")
+
+    use_langgraph: bool = Field(default=False)
     
     log_level: str = Field(default="INFO")
 
